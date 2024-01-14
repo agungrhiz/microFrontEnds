@@ -1,0 +1,92 @@
+<div class="flex flex-col p-4 bg shadow rounded-lg border border-gray-200">
+  <div>
+    <h2 class="mb-2 text-2xl font-semibold tracking-tight text-gray-900">
+      Form Todo
+    </h2>
+    <hr class="w-full h-1" />
+  </div>
+  <form
+    class="max-w-sm xl:w-96 md:w-80 mx-auto p-2 space-y-4"
+    [formGroup]="crudForm"
+    (submit)="onSubmit()"
+  >
+    <div>
+      <div class="relative">
+        <label for="title" class="block mb-2 text-sm font-medium text-gray-900">
+          <span class="text-red-500">*</span>
+          Title
+        </label>
+        <input
+          type="text"
+          id="title"
+          class="block w-full p-4 text-gray-900 border rounded-lg sm:text-md"
+          formControlName="title"
+          [ngClass]="{
+            'border-red-600 focus:ring-red-500 focus:border-red-500': isSubmitted && f['title'].errors,
+            'border-gray-300 focus:ring-gray-500 focus:border-gray-500': !(isSubmitted && f['title'].errors),
+          }"
+          placeholder="Title"
+        />
+      </div>
+      <span
+        class="mt-2 text-xs text-red-600"
+        *ngIf="isSubmitted && f['title'].errors"
+      >
+        Title is required.</span
+      >
+    </div>
+    <div>
+      <label
+        for="completed"
+        class="block mb-2 text-sm font-medium text-gray-900"
+        >Completed</label
+      >
+      <div class="flex flex-wrap">
+        <div class="flex items-center me-4">
+          <input
+            id="true"
+            type="radio"
+            [value]="true"
+            name="completed"
+            class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500"
+            formControlName="completed"
+          />
+          <label for="true" class="ms-2 text-sm font-medium text-gray-900"
+            >Yes</label
+          >
+          <div class="flex items-center ms-4">
+            <input
+              id="false"
+              type="radio"
+              [value]="false"
+              name="completed"
+              class="w-4 h-4 text-gray-600 bg-gray-100 border-gray-300 focus:ring-gray-500"
+              formControlName="completed"
+            />
+            <label for="false" class="ms-2 text-sm font-medium text-gray-900"
+              >No</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="space-y-2">
+      <hr class="w-full h-1" />
+      <div class="flex space-x-2 justify-end">
+        <button
+          type="button"
+          (click)="back()"
+          class="px-5 py-2.5 text-sm font-medium text-gray-900 border border-gray-800 hover:bg-gray-900 hover:text-white focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-lg text-center"
+        >
+          Back
+        </button>
+        <button
+          type="submit"
+          class="px-5 py-2.5 text-sm font-medium text-white bg-gray-800 hover:bg-gray-900 focus:ring-2 focus:outline-none focus:ring-gray-300 rounded-lg text-center"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
